@@ -1,2 +1,11 @@
-# UGR-GII-2-SCD-Sistemas_concurrentes_y_distribuidos-15-16-Practicas
-Prácticas de la asignatura SCD (2 curso) realizadas en la ETSIIT, UGR en el curso 2015/2016. C++
+# Prácticas SCD - 2º - UGR - ETSIIT - GII - PDF - C++
+
+Prácticas realizadas en la asignatura SCD (Sistemas Concurrentes y Distribuidos) del grado en Ingeniería Informática en el curso 2014/2015, UGR.
+
+## Autor
+
+Francisco Javier Caracuel Beltrán
+
+fjcb312@gmail.com
+
+GNU General Public License v3.0
