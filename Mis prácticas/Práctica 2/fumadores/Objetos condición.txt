@@ -1,0 +1,8 @@
+En la clase Estanco hay 4 objetos condición, uno para el estanqero y 3 para los fumadores.
+
+Hay que controlar que el estanquero y los fumadores puedan seguir ejecutando el proceso que tienen o esperen, por eso, se debe tener un objeto condición por cada uno.
+
+El estanquero debe esperar a que no esté el ingrediente en la mesa, por eso, cuando pone un ingrediente y ejecuta el método esperar, comprueba si existe el ingrediente en la mesa. Si existe espera, si se lo han llevado ya no espera y pone otro.
+
+Se debe implementar un objeto condición por cada fumador para que cada fumador espere si no es su ingrediente el que está en la mesa.
+Si llegan a la mesa y no está su ingrediente, esperan. Cuando el estanquero pone su ingrediente en la mesa, los despierta y prosiguen con su proceso.

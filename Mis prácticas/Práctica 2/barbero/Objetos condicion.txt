@@ -1,0 +1,6 @@
+He creado 3 objetos condición, uno para el barbero y 2 para los clientes.
+
+El barbero se dormirá y se despertará en función de si hay clientes o no y se implementa con un solo objeto condición.
+
+Los clientes pueden estar esperando en dos sitios, o en la sala o mientras se pelan, por eso se necesitan dos objetos condición para ellos.
+Si no hay nadie en la barbería, el cliente entrará directamente en la cola de los que están pelándose. Si cuando el cliente entra, ya hay algún otro cliente pelándose, entrará en la cola de espera. Como hay que diferenciar los que están esperando a los que se están pelando, se utilizan dos objetos condición.

@@ -1,0 +1,59 @@
+/******************************************************************************
+ Francisco Javier Caracuel Beltrán
+ 2º B - Grado en Ingeniería Informática
+ Sistemas Concurrentes y Distribuidos
+ 2015
+
+ --
+
+ Práctica 1.
+
+ Práctica donde se hace uso de semáforos POSIX para la sincronización de
+ hebras en el ejemplo del Productor-Consumidor.
+
+ Se produce una serie de números, guardados en un buffer intermedio, para que
+ otro proceso los lea convenientemente y los muestre por pantalla
+******************************************************************************/
+
+1. Describe la variable o variables necesarias, y cómo se determina en qué
+posición se puede escribir y en qué posición se puede leer.
+
+He utilizado un vector con un tamaño que viene definido por la constante
+LENGTH_BUFFER.
+
+Para controlar la posición en la que se puede escribir, existe una variable
+entera inicializada en 0 (free, que será la primera posición en la que debe escribir
+del vector). Cada vez que se produce un dato, esta variable aumenta en 1, así
+apunta a la posición donde debe escribir. Los semáforos son los que
+se encargan de bloquear o no el proceso, por eso, siempre que se produce, se
+aumenta la posición. Para saber si se ha llegado al final, se hace la operación
+módulo. Si el resto es 0, se sabe que la posición es LENGTH_BUFFER y que debe
+continuar desde 0.
+
+Existe otra variable (occupied), que indica la posición que se encuentra
+ocupada y, por tanto, disponible para leer. La implementación para controlar
+los datos que se leen es exactamente igual que con la variable free.
+
+2. Describe los semáforos necesarios, la utilidad de los mismos, el valor
+inicial y en qué puntos del programa se debe usar sem_wait y sem_signal sobre
+ellos.
+
+Se deben utilizar dos semáforos: semC (consumidor) y semP (productor).
+
+Para poder leer un dato, es necesario que exista alguno en el buffer, por eso,
+semC se inicializa a 0. Si la primera vez, el consumidor intenta leer, se bloqueará.
+Cuando el productor produzca un dato, hará un sem_signal indicando que ya
+puede leerse y así, el consumidor se desbloquea y lo puede leer.
+
+A su vez, se necesita otro semáforo que indique cuánto puede escribirse en el
+buffer. Se inicializará al tamaño disponible en el buffer. A medida que el
+productor vaya produciendo datos, debe realizar sem_wait, y el valor irá
+decrementando. Cuando el consumidor lea, hará sem_signal para indicar al
+productor que puede ocupar una posición más, ya que ha sido leída. Si no 
+quedan posiciones libres, el productor se bloquea hasta que el consumidor lea,
+al menos, un dato.
+
+Las operaciones sem_wait deben hacerse antes de producir o consumir cualquier
+dato. Las operaciones sem_signal deben hacerse cuando ya se ha producido o
+consumido algún dato, indicando al otro participante (consumidor o productor)
+que puede continuar su trabajo.

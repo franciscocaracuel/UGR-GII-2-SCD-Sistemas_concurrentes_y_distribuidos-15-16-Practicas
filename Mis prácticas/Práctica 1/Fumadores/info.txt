@@ -1,0 +1,40 @@
+/******************************************************************************
+ Francisco Javier Caracuel Beltrán
+ 2º B - Grado en Ingeniería Informática
+ Sistemas Concurrentes y Distribuidos
+ 2015
+
+ --
+
+ Práctica 2.
+
+ Práctica donde se resuelve el problema de los fumadores.
+
+ Existe un estanquero que produce los elementos que necesitan los fumadores.
+ Hay 3 fumadores y cada uno necesita un elemento diferente. Cuando el
+ estanquero se los da, comienzan a fumar.
+******************************************************************************/
+
+1. Semáforos necesarios para la sincronización y para cada uno de ellos:
+
+Se necesitan tantos semáforos como fumadores haya y, además, otro semáforo
+para el estanquero.
+
+Semáforo del estanquero:
+- Utilidad: permite saber cuándo tiene un elemento sobre la mesa y cuándo no.
+Es decir, antes de coger un elemento hará un sem_wait para saber si algún
+fumador ha cogido el elemento de la mesa.
+- Valor inicial: deber ser 1, porque la primera vez no existe nada encima
+de la mesa.
+- sem_wait lo hará la hebra del propio estanquero, sem_signal lo hará la hebra
+del fumador que coja el elemento para permitir al estanquero coger otro.
+
+Semáforos de los fumadores:
+Se tiene un array con tantos semáforos como fumadores haya. Así se sabe qué
+fumador exactamente puede fumar y cuál debe esperar.
+- Utilidad: permite al estanquero indicar que fumador es el que debe fumar.
+- Valor inicial: debe ser 0, porque al principio les falta a cada uno un
+elemento diferente para poder fumar.
+- sem_wait lo hará la hebra del fumador antes de fumar, así se sabe si tiene
+el elemento que necesita encima de la mesa o no. sem_signal lo hará el 
+estanquero para indicarle al fumador x que puede comenzar a fumar.

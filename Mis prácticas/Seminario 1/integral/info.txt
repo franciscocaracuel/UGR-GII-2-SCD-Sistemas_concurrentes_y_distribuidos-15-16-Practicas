@@ -1,0 +1,42 @@
+Se debe razonar acerca de como el número de procesadores disponibles y el número de hebras afecta al tiempo del cálculo concurrente en relación al secuencial:
+
+cat /proc/cpuinfo
+
+cpu cores	: 4
+
+
+
+fran@fran-Lenovo-Ubuntu:/home/fran/Escritorio/integral# ./calculopi 4 100
+
+Cálculo de PI - Francisco J. Caracuel Beltrán
+valor de PI (calculado secuencialmente)  == 3.1416 en 2.833e-06 segundos 
+valor de PI (calculado concurrentemente) == 4 en 0.000209047 segundos 
+
+fran@fran-Lenovo-Ubuntu:/home/fran/Escritorio/integral# ./calculopi 4 1000
+
+Cálculo de PI - Francisco J. Caracuel Beltrán
+valor de PI (calculado secuencialmente)  == 3.14159 en 2.4268e-05 segundos 
+valor de PI (calculado concurrentemente) == 4 en 0.000204743 segundos 
+
+fran@fran-Lenovo-Ubuntu:/home/fran/Escritorio/integral# ./calculopi 4 10000
+
+Cálculo de PI - Francisco J. Caracuel Beltrán
+valor de PI (calculado secuencialmente)  == 3.14159 en 0.000217192 segundos 
+valor de PI (calculado concurrentemente) == 4 en 0.000306245 segundos 
+
+fran@fran-Lenovo-Ubuntu:/home/fran/Escritorio/integral# ./calculopi 4 100000
+
+Cálculo de PI - Francisco J. Caracuel Beltrán
+valor de PI (calculado secuencialmente)  == 3.14159 en 0.00206278 segundos 
+valor de PI (calculado concurrentemente) == 4 en 0.00132494 segundos 
+
+fran@fran-Lenovo-Ubuntu:/home/fran/Escritorio/integral# ./calculopi 4 10000000
+
+Cálculo de PI - Francisco J. Caracuel Beltrán
+valor de PI (calculado secuencialmente)  == 3.14159 en 0.100396 segundos 
+valor de PI (calculado concurrentemente) == 4 en 0.0479217 segundos 
+
+
+El número de procesadores afecta positivamente cuando requiere mayor cálculo.
+Cuando realiza operaciones menores, el programa secuencial tarda menos en ejecutarse.
+
